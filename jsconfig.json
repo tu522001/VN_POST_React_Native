@@ -1,0 +1,40 @@
+// {
+//   "compilerOptions": {
+//     "baseUrl": ".",
+//     "paths": {
+//       "src/*": [
+//         "./src/*"
+//       ],
+//       "assets/*": [
+//         "../src/assets/*"
+//       ],
+//       "components/*": [
+//         "./src/components/*"
+//       ],
+//       "css/*": [
+//         "./src/css/*"
+//       ],
+//       "device/*": [
+//         "./src/device/*"
+//       ],
+//       "helpers/*": [
+//         "./src/helpers/*"
+//       ],
+//       "navigation/*": [
+//         "./src/navigation/*"
+//       ],
+//       "redux_manager/*": [
+//         "./src/redux_manager/*"
+//       ],
+//       "screens/*": [
+//         "./src/screens/*"
+//       ],
+//       "styles/*": [
+//         "./src/styles/*"
+//       ],
+//     }
+//   }
+// }
+{
+  "name": "src"
+}
