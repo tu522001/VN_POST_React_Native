@@ -31,10 +31,7 @@ export default function HomePageScreen({ navigation }) {
         console.log("Position:", index);
     };
 
-    // const handlePress = () => {
-    //     // Xử lý sự kiện onPress ở đây
-    //     console.log('Thông báo', 'Bạn đã nhấn vào View!');
-    // };
+
 
     return (
         <View style={styles.container}>
