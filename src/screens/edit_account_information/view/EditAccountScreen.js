@@ -1,19 +1,17 @@
 // EditAccountInformationScreen.js
-import React, { useState } from 'react';
-import { View, Text, Image, TextInput, ScrollView, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { View, Text, Image, TextInput, ScrollView, TouchableOpacity, BackHandler } from 'react-native';
 import { btn_primary, btn_calendar, line } from '../../../assets/images/EditAccountScreenImage'
 import styles from '../styles/EditAccountScreenStyles'
 import EditAccountScreenViewModel from '../viewmodel/EditAccountScreenViewModel';
 import DatePicker from 'react-native-date-picker'
+import { useFocusEffect } from '@react-navigation/native';
 
+export default function EditAccountScreen({ navigation }) {
 
+    const { username, address, phone, email, date, open, dateString, maxDate, minDate, saveCredentials, setOpen, handleConfirm, handleInputChangeUsername, handleInputChangeAdress, handleInputChangePhone, handleInputChangeEmail } = EditAccountScreenViewModel()
 
-export default function EditAccountScreen() {
-
-    const { username, address, phone, email, date, open, dateString, maxDate, minDate, setOpen, handleConfirm, handleInputChangeUsername, handleInputChangeAdress, handleInputChangePhone, handleInputChangeEmail } = EditAccountScreenViewModel()
-    const [selectedGender, setSelectedGender] = useState('nam');
-
-    // thông tin user
+    // hàm thông tin user
     const InfoRow = ({ title1, title2 }) => (
         <View style={styles.view_child_1}>
             <View style={styles.view_row_1}>
@@ -27,72 +25,85 @@ export default function EditAccountScreen() {
                 </View>
             </View>
             <Image source={line} style={styles.image_1} />
-
         </View>
     );
 
-    // chỉnh sửa thông tin user
-    const EditInforUses = ({ value, onChangeText, maxLength, title_1, title_2 }) => (
-        <View style={styles.container} >
-            <View style={styles.inputContainer}>
-                <Text style={styles.text}>{title_1}</Text>
-                <TextInput
-                    style={styles.input}
-                    onChangeText={onChangeText}
-                    value={value}
-                    placeholder={title_2} // text
-                    maxLength={maxLength} // Giới hạn tối đa 11 ký tự
-                />
-            </View>
-        </View>
+    useFocusEffect(
+        React.useCallback(() => {
+            const onBackPress = () => {
+                navigation.navigate('Account');
+                return true;
+            };
+
+            BackHandler.addEventListener('hardwareBackPress', onBackPress);
+
+            return () =>
+                BackHandler.removeEventListener('hardwareBackPress', onBackPress);
+        }, [navigation])
     );
 
     return (
-        <ScrollView style={styles.supper_view} >
+        <ScrollView style={styles.supper_view}>
             <View style={styles.total_view1}>
                 <InfoRow title1="Tên đăng nhập" title2="Admin" />
                 <InfoRow title1="Chức danh" title2="Nhân viên" />
                 <InfoRow title1="Đơn vị" title2="TCT Bưu điện Việt Nam" />
             </View>
 
+            <View style={styles.total_view2}>
+                <Text style={styles.text_view_total2}>CHỈNH SỬA THÔNG TIN</Text>
+                <View style={styles.container}>
+                    <View style={styles.inputContainer}>
+                        <Text style={styles.text}>Họ và tên:</Text>
+                        <TextInput
+                            style={styles.input}
+                            onChangeText={handleInputChangeUsername}
+                            value={username}
+                            placeholder=""
+                            maxLength={30}
+                        />
+                    </View>
+                </View>
 
-            <View style={{ marginTop: 20, marginTop: 10, height: "100%", backgroundColor: "white" }}>
+                <View style={styles.container}>
+                    <View style={styles.inputContainer}>
+                        <Text style={styles.text}>Địa chỉ : </Text>
+                        <TextInput
+                            style={styles.input}
+                            onChangeText={handleInputChangeAdress}
+                            value={address}
+                            placeholder=""
+                            maxLength={30}
+                        />
+                    </View>
+                </View>
 
-                <Text style={{ marginStart: 20, marginTop: 20, fontWeight: 600, fontSize: 12, lineHeight: 18, color: "#000000" }}>CHỈNH SỬA THÔNG TIN</Text>
+                <View style={styles.container}>
+                    <View style={styles.inputContainer}>
+                        <Text style={styles.text}>Số điện thoại:</Text>
+                        <TextInput
+                            style={styles.input}
+                            onChangeText={handleInputChangePhone}
+                            value={phone}
+                            placeholder=""
+                            maxLength={10}
+                            keyboardType="numeric" // Cho phép chỉ nhập số
+                        />
+                    </View>
+                </View>
 
-                <EditInforUses
-                    value={username}
-                    onChangeText={handleInputChangeUsername}
-                    maxLength={40}
-                    title_1="Họ và tên:"
-                    title_2="Nguyễn Trường"
-                />
-
-                <EditInforUses
-                    value={address}
-                    onChangeText={handleInputChangeAdress}
-                    maxLength={40}
-                    title_1="Địa chỉ:"
-                    title_2="Hà Nội"
-                />
-
-                <EditInforUses
-                    value={phone}
-                    onChangeText={handleInputChangePhone}
-                    maxLength={10}
-                    title_1="Số điện thoại:"
-                    title_2="0989936077"
-                />
-
-                <EditInforUses
-                    value={email}
-                    onChangeText={handleInputChangeEmail}
-                    maxLength={40}
-                    title_1="Email:"
-                    title_2="NguyenTruong123@gmail.com"
-                />
-
-
+                <View style={styles.container}>
+                    <View style={styles.inputContainer}>
+                        <Text style={styles.text}>Email:</Text>
+                        <TextInput
+                            style={styles.input}
+                            onChangeText={handleInputChangeEmail}
+                            value={email}
+                            placeholder=""
+                            maxLength={40}
+                        />
+                    </View>
+                </View>
 
                 <TouchableOpacity onPress={() => {
                     console.log("Hello")
@@ -102,26 +113,24 @@ export default function EditAccountScreen() {
                         <View style={styles.inputContainer}>
                             <Text style={styles.text}>Ngày sinh:</Text>
                             <Text style={{ position: "absolute", left: 16, marginStart: 5, top: 20, fontSize: 14, color: dateString ? "#44444F" : "#B5B5BE" }}>
-                                {dateString || "05/02/2003"} {/* Hiển thị ngày mặc định nếu dateString rỗng */}
+                                {dateString || "05/02/2003"}
                             </Text>
-                            <View style={{ position: "absolute", right: 10, top: 16 }}>
-                                <Image style={{ width: 20, height: 20 }} source={btn_calendar} />
+                            <View style={styles.view_btn_calendar}>
+                                <Image style={styles.btn_calendar} source={btn_calendar} />
                             </View>
                         </View>
                     </View>
                 </TouchableOpacity>
 
                 <View>
-
-
+                    <Text style={styles.text_sex}>Giới tính :</Text>
                 </View>
 
+                <TouchableOpacity onPress={saveCredentials}>
+                    <Image source={btn_primary} style={styles.btn_save_changes} />
+                </TouchableOpacity>
 
-                <Image source={btn_primary} style={{ width: "90%", height: 40, marginStart: 20, marginEnd: 20, marginTop: 20 }} />
             </View>
-
-
-
 
             <DatePicker
                 modal

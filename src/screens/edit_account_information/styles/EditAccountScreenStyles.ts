@@ -1,42 +1,30 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-    supper_view: {
-        marginTop: 10
-    },
-    total_view1: {
-        backgroundColor: "white"
-    },
+    supper_view: { marginTop: 10 },
 
-    view_row_1: {
-        flexDirection: "row", alignItems: "center"
-    },
-    view_child_1: {
-        height: 45, justifyContent: "space-between"
-    },
+    total_view1: { backgroundColor: "white" },
 
-    text_login: {
-        marginStart: 20, marginTop: 12, color: "#171725", fontSize: 14, lineHeight: 22, fontWeight: "400"
-    },
+    total_view2: { marginTop: 10, height: "100%", backgroundColor: "white" },
 
-    view_text_admin:
-    {
-        flex: 1, alignItems: "flex-end"
-    },
+    text_view_total2: { marginStart: 20, marginTop: 20, fontWeight: "600", fontSize: 12, lineHeight: 18, color: "#000000" },
+
+    view_row_1: { flexDirection: "row", alignItems: "center" },
+
+    view_child_1: { height: 45, justifyContent: "space-between" },
+
+    text_login: { marginStart: 20, marginTop: 12, color: "#171725", fontSize: 14, lineHeight: 22, fontWeight: "400" },
+
+    view_text_admin: { flex: 1, alignItems: "flex-end" },
 
     text_admin: { marginEnd: 20, marginTop: 12, color: "#171725", fontSize: 14, lineHeight: 22, fontWeight: "400" },
 
-    container: {
-        marginStart: 20,
-        marginEnd: 20,
-        width: "90%",
-        marginTop: 20
-    },
+    container: { marginStart: 20, marginEnd: 20, width: "90%", marginTop: 20 },
 
     inputContainer: {
         height: 52,
-        borderColor: "#DEDEE5",
-        backgroundColor: "#DEDEE5",
+        borderColor: "#F1F1F5",
+        backgroundColor: "#F1F1F5",
         borderRadius: 8,
         borderWidth: 1,
         paddingStart: 16
@@ -88,6 +76,9 @@ export default StyleSheet.create({
         borderRadius: 8,
         backgroundColor: 'white', // Phần ca su màu xanh
     },
-
+    btn_save_changes: { width: "90%", height: 40, marginStart: 20, marginEnd: 20, marginTop: 20 },
+    btn_calendar: { width: 20, height: 20 },
+    view_btn_calendar: { position: "absolute", right: 10, top: 16 },
+    text_sex: { color: "#44444F", fontSize: 14, fontWeight: "400", lineHeight: 22, marginStart: 20, marginTop: 20 }
 });
 

@@ -2,7 +2,6 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { View, Text, StatusBar, Image, FlatList, TouchableOpacity } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { useNavigation } from '@react-navigation/native';
 import {
     ac_1,
     ac_2,
@@ -13,9 +12,32 @@ import {
     avatar, btn_kh_next
 } from '../../../assets/images/AccountScreenImage';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+
+
 export default function AccountScreen({ navigation }) {
 
-    // const navigation = useNavigation();
+    const [username, setUsername] = useState('');
+    const [phone, setPhone] = useState('');
+
+    useEffect(() => {
+        const unsubscribe = navigation.addListener('focus', () => {
+            loadData();
+        });
+        return unsubscribe;
+    }, [navigation]);
+
+    const loadData = async () => {
+        try {
+            const storedUsername = await AsyncStorage.getItem('username');
+            const storedPhone = await AsyncStorage.getItem('phone');
+            if (storedUsername !== null) setUsername(storedUsername);
+            if (storedPhone !== null) setPhone(storedPhone);
+        } catch (error) {
+            console.error('Lỗi khi lấy dữ liệu:', error);
+        }
+    };
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -25,7 +47,6 @@ export default function AccountScreen({ navigation }) {
 
 
     const OnClickItem = () => {
-
         console.log("Voa2")
         navigation.navigate('EditAccountScreen');
     }
@@ -46,8 +67,8 @@ export default function AccountScreen({ navigation }) {
                 </View>
 
                 <View style={{ justifyContent: "center", alignItems: 'center' }}>
-                    <Text style={{ fontWeight: 500, fontSize: 20, lineHeight: 30, color: "#0A2745s" }}>Xuân Trường</Text>
-                    <Text style={{ color: "#92929D", fontSize: 14, fontWeight: 400, lineHeight: 22 }}>Mã nhân viên: 00112020</Text>
+                    <Text style={{ fontWeight: 500, fontSize: 20, lineHeight: 30, color: "#0A2745" }}>{username}</Text>
+                    <Text style={{ color: "#92929D", fontSize: 14, fontWeight: 400, lineHeight: 22 }}>{phone}</Text>
                 </View>
 
 

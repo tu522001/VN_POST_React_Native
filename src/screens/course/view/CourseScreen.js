@@ -1,8 +1,7 @@
 // CourseScreen.js 
 // Khoá học
-import React, { useEffect, useLayoutEffect } from 'react';
-import { View, Text, StatusBar, Image, FlatList, TouchableOpacity } from 'react-native';
-import { BackHandler } from 'react-native';
+import React, { useLayoutEffect } from 'react';
+import { View, Text, Image, FlatList, TouchableOpacity } from 'react-native';
 import { HandleOnClickBack } from '../../../utils/HandleOnClickBack';
 
 import {
@@ -33,7 +32,9 @@ export default function CourseScreen({ navigation }) {
     HandleOnClickBack(handleBack);
 
     return (
-        <ScrollView >
+        <ScrollView
+            showsVerticalScrollIndicator={false}
+        >
             {/* <StatusBar backgroundColor="white" barStyle="light-content" /> */}
 
 

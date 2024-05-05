@@ -1,13 +1,13 @@
 // BottomNavigation.js
 import React from 'react';
-import { View, Text, Image, StatusBar } from 'react-native';
+import { View, Text, Image, StatusBar, BackHandler, Alert } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomePageScreen from '../../screens/homes/view/HomePageScreen';
 import DocumentsScreen from '../../screens/document/view/DocumentsScreen';
 import CourseScreen from '../../screens/course/view/CourseScreen';
 import ContestScreen from '../../screens/contest/view/ContestScreen';
 import AccountScreen from '../../screens/account/view/AccountScreen';
-
+import { useFocusEffect } from '@react-navigation/native';
 // import style
 import styles from '../../navigation/styles/BottomNavigationStyle'
 // import hình ảnh từ file BottomNavigationIconImage.ts
@@ -21,6 +21,31 @@ import {
 
 export default function BottomNavigation() {
     const Tab = createBottomTabNavigator();
+
+    // Xử lý sự kiện nhấn nút back
+    const backAction = () => {
+
+        // Alert.alert('Thoát!', 'Bạn có chắc chắn muốn thoát ứng dụng?', [
+        //     {
+        //         text: 'Hủy',
+        //         onPress: () => null,
+        //         style: 'cancel',
+        //     },
+        //     { text: 'Thoát', onPress: () => BackHandler.exitApp() },
+        // ]);
+
+        BackHandler.exitApp()
+        return true;
+    };
+
+    // Sử dụng useFocusEffect để thiết lập và dọn dẹp sự kiện
+    useFocusEffect(
+        React.useCallback(() => {
+            BackHandler.addEventListener('hardwareBackPress', backAction);
+            return () =>
+                BackHandler.removeEventListener('hardwareBackPress', backAction);
+        }, [])
+    );
 
     const renderTabItem = (name, component, image, text, statusBarColor) => {
         return (
@@ -63,7 +88,8 @@ export default function BottomNavigation() {
         <Tab.Navigator
             screenOptions={{
                 tabBarShowLabel: false,
-                tabBarStyle: styles.tabBarStyle
+                tabBarStyle: styles.tabBarStyle,
+                backgroundColor: "white"
             }}>
 
             {renderTabItem("HomePage", HomePageScreen, homePageImage, "Trang Chủ", "#FCB71E")}

@@ -32,7 +32,6 @@ export default function HomePageScreen({ navigation }) {
     };
 
 
-
     return (
         <View style={styles.container}>
             <StatusBar backgroundColor="#FCB71E" barStyle="light-content" />
