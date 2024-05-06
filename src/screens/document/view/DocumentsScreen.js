@@ -13,7 +13,7 @@ export default function DocumentsScreen({ navigation }) {
 
 
     return (
-        <View >
+        <View style={{ flex: 1, backgroundColor: "white" }}>
             {/* <StatusBar backgroundColor="#FCB71E" barStyle="light-content" /> */}
 
             <Text>DocumentsScreen</Text>

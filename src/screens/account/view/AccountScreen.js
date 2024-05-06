@@ -1,6 +1,6 @@
 // HomeScreen.js
 import React, { useEffect, useLayoutEffect, useState } from 'react';
-import { View, Text, StatusBar, Image, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, Image, FlatList, TouchableOpacity } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import {
     ac_1,

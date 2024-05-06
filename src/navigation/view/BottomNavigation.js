@@ -89,7 +89,6 @@ export default function BottomNavigation() {
             screenOptions={{
                 tabBarShowLabel: false,
                 tabBarStyle: styles.tabBarStyle,
-                backgroundColor: "white"
             }}>
 
             {renderTabItem("HomePage", HomePageScreen, homePageImage, "Trang Chủ", "#FCB71E")}

@@ -1,7 +1,7 @@
 // EditAccountInformationScreen.js
 import React from 'react';
 import { View, Text, Image, TextInput, ScrollView, TouchableOpacity, BackHandler } from 'react-native';
-import { btn_primary, btn_calendar, line } from '../../../assets/images/EditAccountScreenImage'
+import { btn_primary, btn_calendar, line, radio_buttom_choose, radio_buttom_unchoose } from '../../../assets/images/EditAccountScreenImage'
 import styles from '../styles/EditAccountScreenStyles'
 import EditAccountScreenViewModel from '../viewmodel/EditAccountScreenViewModel';
 import DatePicker from 'react-native-date-picker'
@@ -9,7 +9,7 @@ import { useFocusEffect } from '@react-navigation/native';
 
 export default function EditAccountScreen({ navigation }) {
 
-    const { username, address, phone, email, date, open, dateString, maxDate, minDate, saveCredentials, setOpen, handleConfirm, handleInputChangeUsername, handleInputChangeAdress, handleInputChangePhone, handleInputChangeEmail } = EditAccountScreenViewModel()
+    const { username, address, phone, email, date, open, dateString, maxDate, minDate, isSelected, handleObserverColorUi, saveCredentials, setOpen, handleConfirm, handleInputChangeUsername, handleInputChangeAdress, handleInputChangePhone, handleInputChangeEmail } = EditAccountScreenViewModel()
 
     // hàm thông tin user
     const InfoRow = ({ title1, title2 }) => (
@@ -42,6 +42,11 @@ export default function EditAccountScreen({ navigation }) {
         }, [navigation])
     );
 
+
+    const onClickNavigation = () => {
+        console.log("Vao3")
+        navigation.goBack()
+    }
     return (
         <ScrollView style={styles.supper_view}>
             <View style={styles.total_view1}>
@@ -113,7 +118,7 @@ export default function EditAccountScreen({ navigation }) {
                         <View style={styles.inputContainer}>
                             <Text style={styles.text}>Ngày sinh:</Text>
                             <Text style={{ position: "absolute", left: 16, marginStart: 5, top: 20, fontSize: 14, color: dateString ? "#44444F" : "#B5B5BE" }}>
-                                {dateString || "05/02/2003"}
+                                {dateString || ""}
                             </Text>
                             <View style={styles.view_btn_calendar}>
                                 <Image style={styles.btn_calendar} source={btn_calendar} />
@@ -122,11 +127,25 @@ export default function EditAccountScreen({ navigation }) {
                     </View>
                 </TouchableOpacity>
 
-                <View>
+                <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
                     <Text style={styles.text_sex}>Giới tính :</Text>
+                    <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginTop: 20, marginEnd: 20 }}>
+                        <TouchableOpacity onPress={() => handleObserverColorUi(!isSelected)}>
+                            <Image style={styles.radio_button} source={isSelected === false ? radio_buttom_unchoose : radio_buttom_choose} />
+                        </TouchableOpacity>
+                        <Text style={styles.text_radio_btn_sex}>Nam</Text>
+                    </View>
+
+                    <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginTop: 20, marginEnd: 150 }}>
+                        <TouchableOpacity onPress={() => handleObserverColorUi(!isSelected)}>
+                            <Image style={styles.radio_button} source={isSelected === true ? radio_buttom_unchoose : radio_buttom_choose} />
+                        </TouchableOpacity>
+                        <Text style={styles.text_radio_btn_sex}>Nữ</Text>
+                    </View>
+
                 </View>
 
-                <TouchableOpacity onPress={saveCredentials}>
+                <TouchableOpacity onPress={() => { saveCredentials(); onClickNavigation(); }}>
                     <Image source={btn_primary} style={styles.btn_save_changes} />
                 </TouchableOpacity>
 
