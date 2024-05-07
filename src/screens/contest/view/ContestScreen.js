@@ -21,7 +21,7 @@ export default function ContestScreen({ navigation }) {
 
     return (
         <View style={{ flex: 1 }}>
-            <Swiper
+            {/* <Swiper
                 ref={swiperRef}
                 index={currentScreen}
                 onIndexChanged={(index) => setCurrentScreen(index)}
@@ -31,7 +31,7 @@ export default function ContestScreen({ navigation }) {
                 <Onboarding1 />
                 <Onboarding2 />
                 <Onboarding3 />
-            </Swiper>
+            </Swiper> */}
 
             <Button title="Tiếp theo" onPress={handlePress} />
         </View>

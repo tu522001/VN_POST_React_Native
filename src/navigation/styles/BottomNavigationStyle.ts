@@ -18,10 +18,9 @@ export default StyleSheet.create({
     },
 
     tabBarStyle: {
-        backgroundColor: '#F1F1F5',
-        bottom: 15,
-        marginEnd: 17,
-        marginStart: 15,
+        backgroundColor: 'white',
+        marginBottom: 5,
+        marginStart: 12,
         borderRadius: 25,
         height: 70,
         width: "94%"

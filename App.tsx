@@ -12,6 +12,7 @@ import AccountScreen from './src/screens/account/view/AccountScreen';
 import Onboarding1 from './src/screens/boardings/Onboarding1';
 import Onboarding2 from './src/screens/boardings/Onboarding2';
 import Onboarding3 from './src/screens/boardings/Onboarding3';
+import OnBoardingScreen from './src/screens/boardings/OnBoardingScreen';
 
 const Stack = createStackNavigator();
 
@@ -21,6 +22,14 @@ const App = () => {
       <NavigationContainer>
 
         <Stack.Navigator>
+          <Stack.Screen options={{
+            headerShown: false,
+          }} name="OnBoardingScreen" component={OnBoardingScreen} />
+          <Stack.Screen name="Onboarding1" component={Onboarding1} />
+          <Stack.Screen name="Onboarding2" component={Onboarding2} />
+          <Stack.Screen name="Onboarding3" component={Onboarding3} />
+
+
           <Stack.Screen options={{ headerShown: false }} name="LoginScreen" component={LoginScreen} />
           <Stack.Screen options={
             {
@@ -56,16 +65,6 @@ const App = () => {
           }} name="EditAccountScreen" component={EditAccount} />
 
         </Stack.Navigator>
-
-
-
-        <Stack.Screen name="AccountScreen" component={AccountScreen} />
-
-        <Stack.Screen name="Onboarding1" component={Onboarding1} />
-        <Stack.Screen name="Onboarding2" component={Onboarding2} />
-        <Stack.Screen name="Onboarding3" component={Onboarding3} />
-
-
       </NavigationContainer>
     </SelectedProvider>
   );

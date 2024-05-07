@@ -89,6 +89,8 @@ export default function BottomNavigation() {
             screenOptions={{
                 tabBarShowLabel: false,
                 tabBarStyle: styles.tabBarStyle,
+                backgroundColor: 'red', // Dòng này thay đổi màu nền thành màu trắng
+
             }}>
 
             {renderTabItem("HomePage", HomePageScreen, homePageImage, "Trang Chủ", "#FCB71E")}
