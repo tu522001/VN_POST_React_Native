@@ -7,10 +7,10 @@ export default StyleSheet.create({
         // paddingTop: Platform.OS === "android" ? 25 : 0,
     },
     item_container_outstanding_course: {
-        marginTop: 20,
+        top: 20,
         marginBottom: 15,
         padding: 10,
-        backgroundColor: "#fff",
+        backgroundColor: "white",
         borderRadius: 8,
         flexDirection: "row", // Sắp xếp các phần tử theo chiều ngang
         width: "97%",
@@ -32,7 +32,8 @@ export default StyleSheet.create({
         marginStart: 10,
         marginEnd: 40,
         fontSize: 12,
-        color: "gray",
+        fontWeight: "600",
+        color: "#0C1E34",
         lineHeight: 18,
         maxHeight: 44, // Số dòng tối đa (22px * 2 dòng)
         overflow: "hidden", // Ẩn nội dung bị tràn ra khỏi khung
@@ -78,6 +79,8 @@ export default StyleSheet.create({
         justifyContent: "space-between", // Các phần tử trong textContainer sẽ được căn giữa
     },
     title: {
+        start: 12,
+        end: 15,
         color: "#0A2745",
         fontSize: 14,
         fontWeight: "600",
@@ -86,6 +89,8 @@ export default StyleSheet.create({
 
     },
     description: {
+        start: 12,
+        end: 15,
         fontSize: 12,
         color: "gray",
         lineHeight: 18,

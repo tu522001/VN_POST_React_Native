@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage'; // Import AsyncStorage
 import { useSelected } from '../../../utils/SelectedContext';
+import * as ImagePicker from 'react-native-image-picker';  // Xử lý EditImage
 export default EditAccountScreenViewModel = () => {
 
     const { isSelected, setIsSelected, username, setUsername, address, setAdress, phone, setPhone, email, setEmail } = useSelected();
@@ -109,6 +110,7 @@ export default EditAccountScreenViewModel = () => {
             await AsyncStorage.setItem('phone', phone);
             await AsyncStorage.setItem('email', email);
             // await AsyncStorage.setItem('isSelected', isSelectedString)
+            await AsyncStorage.setItem('dateString', dateString); // Lưu dateString vào AsyncStorage
 
             console.log('Thông báo Tài khoản đã được lưu thành công!');
 
@@ -126,6 +128,7 @@ export default EditAccountScreenViewModel = () => {
             const storedAddress = await AsyncStorage.getItem('address');
             const storedPhone = await AsyncStorage.getItem('phone');
             const storedEmail = await AsyncStorage.getItem('email');
+            const storedDataTime = await AsyncStorage.getItem('dateString');
             // const storedIsSelected = await AsyncStorage.getItem('isSelected'); // Lấy giá trị đã lưu
             const storedIsSelected = await AsyncStorage.getItem('isSelected'); // Lấy giá trị đã lưu
             // Chuyển đổi chuỗi trở lại thành boolean
@@ -140,6 +143,7 @@ export default EditAccountScreenViewModel = () => {
             setAdress(storedAddress || '');
             setPhone(storedPhone || '');
             setEmail(storedEmail || '');
+            setDateString(storedDataTime || '')
             // setIsSelectedSex(isSelectedBoolean); // Cập nhật trạng thái đã chọn
         } catch (error) {
             console.error('Lỗi khi lấy dữ liệu từ AsyncStorage:', error);

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "184645618168",
+    "project_id": "projectvnpost",
+    "storage_bucket": "projectvnpost.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:184645618168:android:478480fcd5ffaa2526ae0d",
+        "android_client_info": {
+          "package_name": "com.vn_post"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjW7obY58iEkgHJ2fZ0oX28PuIYjP85qY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

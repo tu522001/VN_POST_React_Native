@@ -77,7 +77,7 @@ export default StyleSheet.create({
         borderRadius: 8,
         backgroundColor: 'white', // Phần ca su màu xanh
     },
-    btn_save_changes: { width: "90%", height: 40, marginStart: 20, marginEnd: 20, marginTop: 60, marginBottom: 40 },
+    btn_save_changes: { width: "90%", height: 40, marginStart: 20, marginEnd: 20, marginTop: 60, marginBottom: "100%" },
     btn_calendar: { width: 20, height: 20 },
     view_btn_calendar: { position: "absolute", right: 10, top: 16 },
     text_sex: { color: "#44444F", fontSize: 14, fontWeight: "400", lineHeight: 22, marginStart: 20, marginTop: 20 },

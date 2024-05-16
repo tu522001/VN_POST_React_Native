@@ -7,6 +7,8 @@ import EditAccountScreenViewModel from '../viewmodel/EditAccountScreenViewModel'
 import DatePicker from 'react-native-date-picker'
 import { useFocusEffect } from '@react-navigation/native';
 
+
+
 export default function EditAccountScreen({ navigation }) {
 
     const { username, address, phone, email, date, open, dateString, maxDate, minDate, isSelected, handleObserverColorUi, saveCredentials, setOpen, handleConfirm, handleInputChangeUsername, handleInputChangeAdress, handleInputChangePhone, handleInputChangeEmail } = EditAccountScreenViewModel()
@@ -28,20 +30,18 @@ export default function EditAccountScreen({ navigation }) {
         </View>
     );
 
+    // xử lý nút back trên điện thoại
     useFocusEffect(
         React.useCallback(() => {
             const onBackPress = () => {
                 navigation.navigate('Account');
                 return true;
             };
-
             BackHandler.addEventListener('hardwareBackPress', onBackPress);
-
             return () =>
                 BackHandler.removeEventListener('hardwareBackPress', onBackPress);
         }, [navigation])
     );
-
 
     const onClickNavigation = () => {
         console.log("Vao3")
@@ -119,6 +119,7 @@ export default function EditAccountScreen({ navigation }) {
                             <Text style={styles.text}>Ngày sinh:</Text>
                             <Text style={{ position: "absolute", left: 16, marginStart: 5, top: 20, fontSize: 14, color: dateString ? "#44444F" : "#B5B5BE" }}>
                                 {dateString || ""}
+                                {console.log("Data : " + dateString)}
                             </Text>
                             <View style={styles.view_btn_calendar}>
                                 <Image style={styles.btn_calendar} source={btn_calendar} />
